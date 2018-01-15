@@ -11,7 +11,7 @@ export function fetchFeed() {
             .then(response => {
                 dispatch({
                     type: FETCH_FEDD,
-                    payload: response.data.message
+                    payload: response
                 });
             });
     }

@@ -6,9 +6,10 @@ import reduxThunk from 'redux-thunk';
 import { logger } from 'redux-logger';
 import reducers from './reducers';
 import { Header } from './components/common';
+import PostsList from './components/PostsList';
 
 
-const createStoreWithMiddleware = applyMiddleware(reduxThunk, logger)(createStore);
+const createStoreWithMiddleware = applyMiddleware(logger, reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
 const App = () => {
@@ -16,9 +17,10 @@ const App = () => {
     <Provider store={store}>
       <View>
         <Header headerText="Reddit Feed" />
+        <PostsList />
       </View>
     </Provider>
-  )
-}
+  );
+};
 
 export default App;

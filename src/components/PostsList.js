@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 import { fetchFeed } from '../actions';
-import { Spinner } from './common'
+import { Spinner } from './common';
+import PostDetail from './PostDetail';
 
 class PostsList extends Component {
+
+    componentWillMount() {
+        this.props.fetchFeed();
+    }
+
+    renderFeed() {
+      return this.props.feed.map(redpost => <PostDetail key={redpost.data.id} redpost={redpost} />);
+    }
+
     render() {
         const { isfetched } = this.props;
 
         if (!isfetched) {
-           return <Spinner />;
+            return <Spinner />;
         }
         return (
-            <View>
-                console.log(this.props.feed)
-            </View>
+            <ScrollView>
+                {this.renderFeed()}
+            </ScrollView>
         );
     }
 }
