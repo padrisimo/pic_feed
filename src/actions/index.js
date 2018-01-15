@@ -4,11 +4,15 @@ export const FETCH_FEDD = 'FETCH_FEDD';
 
 const ROOT_URL = 'https://api.reddit.com';
 
-export function fetchFeed() {
-    const request = axios.get(`${ROOT_URL}/r/pics/new.json`);
 
-    return {
-        type: FETCH_FEDD,
-        payload: request
-    };
+export function fetchFeed() {
+    return dispatch => {
+        axios.get(`${ROOT_URL}/r/pics/new.json`)
+            .then(response => {
+                dispatch({
+                    type: FETCH_FEDD,
+                    payload: response.data.message
+                });
+            });
+    }
 }
