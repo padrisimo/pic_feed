@@ -13,4 +13,4 @@ Reddit Feed App
 
 ### Misc
 
-Common Troubleshooting cases [here](http://facebook.github.io/react-native/docs/running-on-device.html)
+Scroll all the the way up to get a refrshed feed of posts.

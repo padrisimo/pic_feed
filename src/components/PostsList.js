@@ -22,7 +22,7 @@ class PostsList extends Component {
             return <Spinner />;
         }
         return (
-            <ScrollView>
+            <ScrollView onRefresh={this.props.fetchFeed()}>
                 {this.renderFeed()}
             </ScrollView>
         );
