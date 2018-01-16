@@ -15,7 +15,7 @@ const store = createStoreWithMiddleware(reducers);
 const App = () => {
   return (
     <Provider store={store}>
-      <View>
+      <View style={{ flex: 1 }}>
         <Header headerText="Reddit Feed" />
         <PostsList />
       </View>
