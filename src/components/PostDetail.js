@@ -1,41 +1,43 @@
 import React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, TouchableOpacity, Linking } from 'react-native';
 import { Card, CardSection } from './common';
 
 const PostDetail = ({ redpost }) => {
-    const { created_utc, thumbnail, author, title, num_comments, score } = redpost.data;
+    const { created_utc, thumbnail, author, title, num_comments, score, permalink } = redpost.data;
     const isoDate = new Date(created_utc).toLocaleTimeString({ hour: '2-digit', minute: '2-digit' });
 
     return (
-        <Card>
-            <CardSection>
-                <View style={styles.thumbnailContainerStyle}>
-                    <Image style={styles.thumbnailStyle} source={{ uri: thumbnail }} />
-                </View>
-                <View style={styles.textContentStyle}>
-                    <View style={styles.dateContainer}>
-                        <Text sstyle={{ fontSize: 9 }}>created at {isoDate}</Text>
+        <TouchableOpacity onPress={() => Linking.openURL(`https://www.reddit.com${permalink}`)}>
+            <Card>
+                <CardSection>
+                    <View style={styles.thumbnailContainerStyle}>
+                        <Image style={styles.thumbnailStyle} source={{ uri: thumbnail }} />
                     </View>
-                    <View style={styles.dateContainer}>
-                        <Text style={styles.titleTextStyle}>{title}</Text>
+                    <View style={styles.textContentStyle}>
+                        <View style={styles.dateContainer}>
+                            <Text sstyle={{ fontSize: 9 }}>created at {isoDate}</Text>
+                        </View>
+                        <View style={styles.dateContainer}>
+                            <Text style={styles.titleTextStyle}>{title}</Text>
+                        </View>
+                        <View style={styles.lineStyle}>
+                            <View>
+                                <Text style={{ fontSize: 9 }}>{author}</Text>
+                            </View>
+                            <View>
+                                <Text style={{ fontSize: 9 }}>{score}</Text>
+                            </View>
+                            <View>
+                                <Text style={{ fontSize: 9 }}>{num_comments}</Text>
+                            </View>
+
+                        </View>
                     </View>
-                    <View style={styles.lineStyle}>
-                        <View>
-                            <Text style={{ fontSize: 9 }}>{author}</Text>
-                        </View>
-                        <View>
-                            <Text style={{ fontSize: 9 }}>{score}</Text>
-                        </View>
-                        <View>
-                            <Text style={{ fontSize: 9 }}>{num_comments}</Text>
-                        </View>
-
-                    </View>
-                </View>
 
 
-            </CardSection>
-        </Card>
+                </CardSection>
+            </Card>
+        </TouchableOpacity>
 
     );
 };
