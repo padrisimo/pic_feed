@@ -1,10 +1,11 @@
 import React from 'react';
+import moment from 'moment';
 import { Text, View, Image, TouchableOpacity, Linking } from 'react-native';
 import { Card, CardSection } from './common';
 
 const PostDetail = ({ redpost }) => {
     const { created_utc, thumbnail, author, title, num_comments, score, permalink } = redpost.data;
-    const isoDate = new Date(created_utc).toLocaleTimeString({ hour: '2-digit', minute: '2-digit' });
+    const isoDate = moment.unix(created_utc).startOf('minute').fromNow();
 
     return (
         <TouchableOpacity onPress={() => Linking.openURL(`https://www.reddit.com${permalink}`)}>
@@ -15,20 +16,20 @@ const PostDetail = ({ redpost }) => {
                     </View>
                     <View style={styles.textContentStyle}>
                         <View style={styles.dateContainer}>
-                            <Text sstyle={{ fontSize: 9 }}>created at {isoDate}</Text>
+                            <Text sstyle={{ fontSize: 9 }}>created {isoDate}</Text>
                         </View>
                         <View style={styles.dateContainer}>
                             <Text style={styles.titleTextStyle}>{title}</Text>
                         </View>
                         <View style={styles.lineStyle}>
                             <View>
-                                <Text style={{ fontSize: 9 }}>{author}</Text>
+                                <Text style={{ fontSize: 9 }}>by: {author}</Text>
                             </View>
                             <View>
-                                <Text style={{ fontSize: 9 }}>{score}</Text>
+                                <Text style={{ fontSize: 9 }}> Score: {score}</Text>
                             </View>
                             <View>
-                                <Text style={{ fontSize: 9 }}>{num_comments}</Text>
+                                <Text style={{ fontSize: 9 }}> Coments: {num_comments}</Text>
                             </View>
 
                         </View>

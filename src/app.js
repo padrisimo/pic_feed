@@ -16,7 +16,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <View style={{ flex: 1 }}>
-        <Header headerText="Reddit Feed" />
+        <Header headerText="Reddit Feed App" />
         <PostsList />
       </View>
     </Provider>
