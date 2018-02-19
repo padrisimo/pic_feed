@@ -1,24 +1,27 @@
 import React from 'react';
-import { View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 import { logger } from 'redux-logger';
+import { StackNavigator } from 'react-navigation';
+
 import reducers from './reducers';
-import { Header } from './components/common';
 import PostsList from './components/PostsList';
+import WebPage from './components/WebPage';
 
 
 const createStoreWithMiddleware = applyMiddleware(logger, reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);
 
+const AppNavigator = StackNavigator({
+  Home: {screen: PostsList},
+  Web: { screen: WebPage}
+})
+
 const App = () => {
   return (
     <Provider store={store}>
-      <View style={{ flex: 1 }}>
-        <Header headerText="Reddit Feed App" />
-        <PostsList />
-      </View>
+      <AppNavigator />
     </Provider>
   );
 };

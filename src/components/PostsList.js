@@ -8,7 +8,7 @@ import PostDetail from './PostDetail';
 class PostsList extends Component {
 
     static navigationOptions = {
-        title: 'Available Colors',
+        title: 'Post of Reddit',
     }
 
     constructor(props) {
