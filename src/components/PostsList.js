@@ -41,6 +41,7 @@ class PostsList extends Component {
 
     render() {
         const { isfetched } = this.props;
+        const { navigate } = this.props.navigation;
 
         if (!isfetched) {
             return <Spinner />;
@@ -49,7 +50,7 @@ class PostsList extends Component {
             <ListView
                 style={styles.container}
                 dataSource={this.state.dataSource}
-                renderRow={redpost => <PostDetail key={redpost.data.id} redpost={redpost} />}
+                renderRow={redpost => <PostDetail navigate={navigate} key={redpost.data.id} redpost={redpost} />}
             />
         );
     }

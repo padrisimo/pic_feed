@@ -6,11 +6,11 @@ const WebPage = ({ navigation }) => (
     <WebView
         style={styles.container}
         source={navigation.state.params} 
-        contentInset={{ top: -650}}/>
+        contentInset={{ top: -50}}/>
 )
 
 WebPage.navigationOptions = {
-    title: 'All Colors'
+    title: 'Reddit WebView'
 }
 
 const styles = StyleSheet.create({

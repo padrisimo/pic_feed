@@ -1,14 +1,14 @@
 import React from 'react';
 import moment from 'moment';
-import { Text, View, Image, TouchableOpacity, Linking } from 'react-native';
+import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { Card, CardSection } from './common';
 
-const PostDetail = ({ redpost }) => {
+const PostDetail = ({ redpost, navigate }) => {
     const { created_utc, thumbnail, author, title, num_comments, score, permalink } = redpost.data;
     const isoDate = moment.unix(created_utc).startOf('minute').fromNow();
 
     return (
-        <TouchableOpacity onPress={() => Linking.openURL(`https://www.reddit.com${permalink}`)}>
+        <TouchableOpacity onPress={() => navigate('Web', { uri: `https://www.reddit.com${permalink}`})}>
             <Card>
                 <CardSection>
                     <View style={styles.thumbnailContainerStyle}>
