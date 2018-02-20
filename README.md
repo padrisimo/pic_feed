@@ -11,6 +11,3 @@ Reddit Feed App
 
 *(or run-ios)
 
-### Misc
-
-Scroll all the the way up to get a refrshed feed of posts.
