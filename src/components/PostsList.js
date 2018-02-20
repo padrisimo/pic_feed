@@ -4,6 +4,7 @@ import { ListView, StyleSheet } from 'react-native';
 import { fetchFeed } from '../actions';
 import { Spinner } from './common';
 import PostDetail from './PostDetail';
+import PostForm from './PostForm';
 
 class PostsList extends Component {
 
@@ -34,7 +35,7 @@ class PostsList extends Component {
     }
 
     renderFeed() {
-        return this.props.feed.map(redpost => 
+        return this.props.feed.map(redpost =>
             <PostDetail key={redpost.data.id} redpost={redpost} />
         );
     }
@@ -50,7 +51,15 @@ class PostsList extends Component {
             <ListView
                 style={styles.container}
                 dataSource={this.state.dataSource}
-                renderRow={redpost => <PostDetail navigate={navigate} key={redpost.data.id} redpost={redpost} />}
+                renderRow={redpost => <PostDetail
+                    navigate={navigate}
+                    key={redpost.data.id}
+                    redpost={redpost} />}
+                renderHeader={() => (
+                    <PostForm
+                        onNewTopic={topic => this.props.fetchFeed(topic)}
+                        navigation={this.props.navigation} />
+                )}
             />
         );
     }
